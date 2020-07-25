@@ -1,3 +1,10 @@
+## Setup Elixir
+To setup your development environment on either Mac, Linux or Windows head over to the official nerves documentation.
+
+[Installation](https://hexdocs.pm/nerves/installation.html)
+
+## Setup Project
+
 1. Prepare your Phoenix project to build JavaScript and CSS assets:
 
 These steps only need to be done once.
