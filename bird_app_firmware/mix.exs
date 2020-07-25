@@ -39,6 +39,7 @@ defmodule BirdAppFirmware.MixProject do
   defp deps do
     [
       # Dependencies for all targets
+      {:nerves_firmware_ssh, "~> 0.3", targets: @all_targets},
       {:bird_app_ui, path: "../bird_app_ui"},
       {:nerves, "~> 1.6.0", runtime: false},
       {:shoehorn, "~> 0.6"},
