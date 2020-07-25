@@ -43,7 +43,18 @@ mix firmware.burn
 
 7. Insert the SD card into your target board and connect the USB cable or otherwise power it on
 
-8. for it to finish booting (5-10 seconds)
+8. Wait for it to finish booting (5-10 seconds)
 
-9. Open a browser window on your host computer to http://nerves.local/video.mjpeg
+9. Open a browser window on your host computer to http://nerves.local/video.mjpeg or ssh to the raspberry with `ssh nerves.local`
+
+10. Now whenever you update the code you can also deploy the update via ssh
+
+```bash
+#create new firmware
+cd bird_app_firmware
+mix deps.get
+mix firmware
+mix upload
+```
+
 
