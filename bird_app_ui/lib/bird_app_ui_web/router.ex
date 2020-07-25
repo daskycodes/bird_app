@@ -10,6 +10,8 @@ defmodule BirdAppUiWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  forward "/video.mjpeg", BirdAppUi.Streamer
+
   pipeline :api do
     plug :accepts, ["json"]
   end
