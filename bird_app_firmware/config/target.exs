@@ -7,12 +7,17 @@ import_config "../../bird_app_ui/config/prod.exs"
 config :bird_app_ui, BirdAppUiWeb.Endpoint,
   # Nerves root filesystem is read-only, so disable the code reloader
   code_reloader: false,
-  http: [port: 80],
+  http: [
+    port: 80,
+    protocol_options: [
+      idle_timeout: :infinity
+    ]
+  ],
   # Use compile-time Mix config instead of runtime environment variables
   load_from_system_env: false,
   # Start the server since we're running in a release instead of through `mix`
   server: true,
-  url: [host: "nerves.local", port: 80],
+  url: [host: "nerves.local", port: 80]
 
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those
@@ -75,7 +80,7 @@ config :vintage_net,
      %{
        type: VintageNetWiFi,
        vintage_net_wifi: %{
-         key_mgmt: String.to_atom(key_mgmt),
+         key_mgmt: :wpa_psk,
          ssid: System.get_env("NERVES_NETWORK_SSID"),
          psk: System.get_env("NERVES_NETWORK_PSK")
        },
