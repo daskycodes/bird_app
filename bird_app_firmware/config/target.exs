@@ -71,7 +71,16 @@ config :vintage_net,
        type: VintageNetEthernet,
        ipv4: %{method: :dhcp}
      }},
-    {"wlan0", %{type: VintageNetWiFi}}
+     {"wlan0",
+     %{
+       type: VintageNetWiFi,
+       vintage_net_wifi: %{
+         key_mgmt: String.to_atom(key_mgmt),
+         ssid: System.get_env("NERVES_NETWORK_SSID"),
+         psk: System.get_env("NERVES_NETWORK_PSK")
+       },
+       ipv4: %{method: :dhcp}
+     }}
   ]
 
 config :mdns_lite,
