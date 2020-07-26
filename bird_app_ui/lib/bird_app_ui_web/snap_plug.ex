@@ -2,6 +2,7 @@ defmodule BirdAppUiWeb.SnapPlug do
   import Plug.Conn
 
   def init(opts), do: opts
+
   def call(conn, _opts) do
     conn
     |> put_resp_header("Age", "0")
@@ -10,5 +11,4 @@ defmodule BirdAppUiWeb.SnapPlug do
     |> put_resp_header("Content-Type", "image/jpeg")
     |> send_resp(200, BirdAppHardware.Camera.next_frame())
   end
-
 end
