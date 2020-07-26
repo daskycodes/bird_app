@@ -11,6 +11,7 @@ defmodule BirdAppUiWeb.Router do
   end
 
   forward "/video.mjpeg", BirdAppUi.Streamer
+  forward "/snap.jpg", BirdAppUiWeb.SnapPlug
 
   pipeline :api do
     plug :accepts, ["json"]
