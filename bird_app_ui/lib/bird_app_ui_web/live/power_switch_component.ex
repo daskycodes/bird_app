@@ -10,10 +10,12 @@ defmodule BirdAppUiWeb.PowerSwitchComponent do
     {:ok, assign(socket, :power, Led.state())}
   end
 
+  @impl true
   def update(_assigns, socket) do
     {:ok, assign(socket, :power, Led.state())}
   end
 
+  @impl true
   def render(assigns) do
     ~L"""
     <button phx-click="switch-power" phx-target="<%= @myself %>">
@@ -22,6 +24,7 @@ defmodule BirdAppUiWeb.PowerSwitchComponent do
     """
   end
 
+  @impl true
   def handle_event("switch-power", _, socket) do
     Led.switch_power()
 
