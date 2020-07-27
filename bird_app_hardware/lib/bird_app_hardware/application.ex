@@ -10,7 +10,7 @@ defmodule BirdAppHardware.Application do
       # Starts a worker by calling: BirdAppHardware.Worker.start_link(arg)
       # {BirdAppHardware.Worker, arg}
       Picam.Camera,
-      BirdAppHardware.Camera,
+      BirdAppHardware.Camera
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

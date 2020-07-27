@@ -3,7 +3,10 @@ defmodule BirdAppUiWeb.PowerSwitchComponent do
 
   alias BirdAppHardware.Led
 
-  def mount(_params, _session, socket) do
+  @impl true
+  def mount(socket) do
+    if connected?(socket), do: Led.subscribe()
+
     {:ok, assign(socket, :power, Led.state())}
   end
 

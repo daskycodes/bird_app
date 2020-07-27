@@ -36,4 +36,10 @@ defmodule BirdAppUiWeb.PageLive do
         into: %{},
         do: {app, vsn}
   end
+
+  @impl true
+  def handle_info({:power_switched, state}, socket) do
+    send_update(BirdAppUiWeb.PowerSwitchComponent, id: "power-switch", power: BirdAppHardware.Led.state())
+    {:noreply, socket}
+  end
 end
