@@ -42,4 +42,10 @@ defmodule BirdAppUiWeb.PageLive do
     send_update(BirdAppUiWeb.PowerSwitchComponent, id: "power-switch", power: state)
     {:noreply, socket}
   end
+
+  @impl true
+  def handle_info({:pulsewidth_switched, state}, socket) do
+    send_update(BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch", pulsewidth: state)
+    {:noreply, socket}
+  end
 end

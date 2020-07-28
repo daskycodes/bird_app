@@ -10,20 +10,20 @@ defmodule BirdAppHardware.Led do
     |> broadcast(:power_switched)
   end
 
-  def state() do
+  def state do
     case GPIO.read(output_gpio) do
       0 -> "off"
       1 -> "on"
     end
   end
 
-  def output_gpio() do
-    {:ok, output_gpio} = GPIO.open(@output_pin, :output)
-    output_gpio
-  end
-
   def subscribe do
     Phoenix.PubSub.subscribe(BirdAppUi.PubSub, "power")
+  end
+
+  defp output_gpio do
+    {:ok, output_gpio} = GPIO.open(@output_pin, :output)
+    output_gpio
   end
 
   defp broadcast(:ok, event) do
