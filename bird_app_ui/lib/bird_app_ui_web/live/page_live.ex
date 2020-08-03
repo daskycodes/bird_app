@@ -3,38 +3,8 @@ defmodule BirdAppUiWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
-  end
-
-  @impl true
-  def handle_event("suggest", %{"q" => query}, socket) do
-    {:noreply, assign(socket, results: search(query), query: query)}
-  end
-
-  @impl true
-  def handle_event("search", %{"q" => query}, socket) do
-    case search(query) do
-      %{^query => vsn} ->
-        {:noreply, redirect(socket, external: "https://hexdocs.pm/#{query}/#{vsn}")}
-
-      _ ->
-        {:noreply,
-         socket
-         |> put_flash(:error, "No dependencies found matching \"#{query}\"")
-         |> assign(results: %{}, query: query)}
-    end
-  end
-
-  defp search(query) do
-    if not BirdAppUiWeb.Endpoint.config(:code_reloader) do
-      raise "action disabled when not in development"
-    end
-
-    for {app, desc, vsn} <- Application.started_applications(),
-        app = to_string(app),
-        String.starts_with?(app, query) and not List.starts_with?(desc, ~c"ERTS"),
-        into: %{},
-        do: {app, vsn}
+    measurements = BirdAppHardware.Dht.read(Dht4)
+    {:ok, assign(socket, temperature: measurements.temperature, humidity: measurements.humidity)}
   end
 
   @impl true
@@ -46,6 +16,13 @@ defmodule BirdAppUiWeb.PageLive do
   @impl true
   def handle_info({:pulsewidth_switched, state}, socket) do
     send_update(BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch", pulsewidth: state)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info({:dht_update, measurements}, socket) do
+    send_update(BirdAppUiWeb.HumidityComponent, [id: "humidity", humidity: measurements.humidity])
+    send_update(BirdAppUiWeb.TemperatureComponent, [id: "temperature", temperature: measurements.temperature])
     {:noreply, socket}
   end
 end

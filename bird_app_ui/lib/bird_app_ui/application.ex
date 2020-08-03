@@ -17,6 +17,8 @@ defmodule BirdAppUi.Application do
       # {BirdAppUi.Worker, arg}
     ]
 
+    :telemetry.attach("dht", [:dht, :read], &BirdAppHardware.Dht.handle_event/4, nil)
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: BirdAppUi.Supervisor]

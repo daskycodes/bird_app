@@ -6,6 +6,7 @@ defmodule BirdAppFirmware.Application do
   use Application
 
   def start(_type, _args) do
+    Nerves.Runtime.validate_firmware()
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: BirdAppFirmware.Supervisor]

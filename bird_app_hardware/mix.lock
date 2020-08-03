@@ -1,6 +1,12 @@
 %{
   "circuits_gpio": {:hex, :circuits_gpio, "0.4.5", "4d5b0f707c425fc56f03086232259f65482a3d1f1cf15335253636d0bb846446", [:make, :mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "b42d28d60a6cfdfb6b21b66ab0b8c5de0ea5a32b390b61d2fe86a2ad8edb90ad"},
+  "dht": {:hex, :dht, "0.1.0", "9ab35c1463d563755093faa2592d5c53fd3defc5c737fd22c16e6b67cfffba98", [:make, :mix], [{:circuits_gpio, "~> 0.4", [hex: :circuits_gpio, repo: "hexpm", optional: false]}, {:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}, {:telemetry_poller, "~> 0.5", [hex: :telemetry_poller, repo: "hexpm", optional: false]}], "hexpm", "0408e62e3c914b12ef2add7d00d52a06accfc951c93beb0107c73a07dd785428"},
   "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm", "d522695b93b7f0b4c0fcb2dfe73a6b905b1c301226a5a55cb42e5b14d509e050"},
+  "nerves_dht": {:git, "https://github.com/visciang/nerves_dht.git", "7f82c0135f23f2f545b570c5e7d79faf07abeacc", [tag: "1.1.4"]},
+  "nerves_sad": {:git, "https://github.com/visciang/nerves_sad.git", "87c17cc551b0dd3062e64cc7e568da37580eeca2", [tag: "1.1.1"]},
+  "persistent_storage": {:hex, :persistent_storage, "0.10.1", "1631462ba5851037c5691a4e3e617c59a43d30c0c73a0e223f68b73e06727105", [:mix], [], "hexpm", "80b5c86703138b7217810fa8d370e9647afcfe69a4c04b53fdf439b59bca0bf9"},
   "picam": {:hex, :picam, "0.4.1", "a2d0d980cf8a18a0123477ac0c12ca11e6f060904d642d1d0672e8a43251576f", [:make, :mix], [{:elixir_make, "~> 0.5", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "2b99fd77152d409617951f5dea6b13c54d5220516531f9a762a937ef7316bba0"},
   "pigpiox": {:hex, :pigpiox, "0.1.2", "efbd55fb4b4507aaf44193cf6bf5fbdff288a351bdfed3f31bdc9377ee5623fd", [:mix], [], "hexpm", "c6b05fca2282bb9499181fac2c71a8116b74bb5ac9b853ffbcd1585e9900eec2"},
+  "telemetry": {:hex, :telemetry, "0.4.2", "2808c992455e08d6177322f14d3bdb6b625fbcfd233a73505870d8738a2f4599", [:rebar3], [], "hexpm", "2d1419bd9dda6a206d7b5852179511722e2b18812310d304620c7bd92a13fcef"},
+  "telemetry_poller": {:hex, :telemetry_poller, "0.5.1", "21071cc2e536810bac5628b935521ff3e28f0303e770951158c73eaaa01e962a", [:rebar3], [{:telemetry, "~> 0.4", [hex: :telemetry, repo: "hexpm", optional: false]}], "hexpm", "4cab72069210bc6e7a080cec9afffad1b33370149ed5d379b81c7c5f0c663fd4"},
 }

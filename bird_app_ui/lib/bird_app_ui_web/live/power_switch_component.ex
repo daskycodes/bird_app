@@ -18,7 +18,7 @@ defmodule BirdAppUiWeb.PowerSwitchComponent do
   @impl true
   def render(assigns) do
     ~L"""
-    <button phx-click="switch-power" phx-target="<%= @myself %>">
+    <button class="w-full font-bold bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow my-2" phx-click="switch-power" phx-target="<%= @myself %>">
       Power is <%= @power %>
     </button>
     """
