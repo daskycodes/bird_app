@@ -1,4 +1,4 @@
-defmodule BirdAppUiWeb.PageLive do
+defmodule BirdAppUiWeb.DashboardLive do
   use BirdAppUiWeb, :live_view
 
   @impl true
