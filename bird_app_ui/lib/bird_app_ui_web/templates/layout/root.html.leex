@@ -8,23 +8,14 @@
     <%= live_title_tag assigns[:page_title] || "BirdAppUi", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
+  <body class="bg-black-alt font-sans leading-normal tracking-normal">
+    <header class="container mx-auto">
+      <%= render BirdAppUiWeb.SharedView, "_navbar.html", assigns %>
     </header>
     <%= @inner_content %>
+    <footer style="box-shadow: 0 50vh 0 50vh #3182ce;"/>
   </body>
 </html>

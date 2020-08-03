@@ -9,6 +9,7 @@ defmodule BirdAppHardware.Servo do
       2000 -> GPIO.set_servo_pulsewidth(23, 1000)
       _ -> GPIO.set_servo_pulsewidth(23, 1000)
     end
+
     broadcast(:ok, :pulsewidth_switched)
     :ok
   end
