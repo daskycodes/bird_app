@@ -1,3 +1,7 @@
+# Bird.io
+
+![](https://i.ibb.co/nBvnmxd/Bildschirmfoto-2020-08-04-um-02-12-17.png)
+
 ## Setup Elixir
 To setup your development environment on either Mac, Linux or Windows head over to the official nerves documentation.
 
