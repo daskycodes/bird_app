@@ -116,7 +116,7 @@ config :mdns_lite,
   ]
 
   config :telegram,
-    bot_id: System.get_env("TELEGRAM_BOT_ID"),
+    bot_token: System.get_env("TELEGRAM_BOT_TOKEN"),
     chat_id: System.get_env("TELEGRAM_CHAT_ID")
 
 # Import target specific config. This must remain at the bottom

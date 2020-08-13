@@ -24,7 +24,7 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
     chat_id = System.get_env("TELEGRAM_CHAT_ID")
     bot_id = System.get_env("TELEGRAM_BOT_ID")
     IO.inspect(bot_id)
-    Telegram.Api.request(Application.fetch_env!(:telegram, :bot_id), "sendPhoto", chat_id: Application.fetch_env!(:telegram, :chat_id), photo: {:file, "/tmp/snap.jpg"})
+    Telegram.Api.request(Application.fetch_env!(:telegram, :bot_token), "sendPhoto", chat_id: Application.fetch_env!(:telegram, :chat_id), photo: {:file, "/tmp/snap.jpg"})
     {:noreply, socket}
   end
 end
