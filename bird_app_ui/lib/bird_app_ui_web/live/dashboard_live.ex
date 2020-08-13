@@ -25,4 +25,5 @@ defmodule BirdAppUiWeb.DashboardLive do
     send_update(BirdAppUiWeb.TemperatureComponent, [id: "temperature", temperature: measurements.temperature])
     {:noreply, socket}
   end
+
 end

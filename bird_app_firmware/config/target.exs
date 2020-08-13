@@ -115,6 +115,10 @@ config :mdns_lite,
     }
   ]
 
+  config :telegram,
+    bot_id: System.get_env("TELEGRAM_BOT_ID"),
+    chat_id: System.get_env("TELEGRAM_CHAT_ID")
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
