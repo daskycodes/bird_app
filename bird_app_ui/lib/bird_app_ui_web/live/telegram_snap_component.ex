@@ -19,11 +19,7 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
 
   @impl true
   def handle_event("snap", _, socket) do
-    IO.puts("Hi")
     File.write!("/tmp/snap.jpg", Camera.next_frame())
-    chat_id = System.get_env("TELEGRAM_CHAT_ID")
-    bot_id = System.get_env("TELEGRAM_BOT_ID")
-    IO.inspect(bot_id)
     Telegram.Api.request(Application.fetch_env!(:telegram, :bot_token), "sendPhoto", chat_id: Application.fetch_env!(:telegram, :chat_id), photo: {:file, "/tmp/snap.jpg"})
     {:noreply, socket}
   end
