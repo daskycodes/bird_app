@@ -23,14 +23,14 @@
     <div class="flex flex-wrap">
       <div class="w-full p-3 mx-auto" style="max-width: 680px;">
         <div class="rounded shadow-lg p-2">
-          <div id="twitch-embed" phx-hook="TwitchEmbed"/>
+          <svg id="canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" style="background-image: url('video.mjpg');"></svg>
         </div>
       </div>
-    </div>
 
       <div class="w-full md:flex-1 p-3">
         <%= live_component @socket, BirdAppUiWeb.PowerSwitchComponent, id: "power-switch" %>
         <%= live_component @socket, BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch" %>
       </div>
+    </div>
   </section>
 </div>

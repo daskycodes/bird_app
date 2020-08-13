@@ -10,7 +10,7 @@ defmodule BirdAppUiWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  forward "/video.mjpeg", BirdAppUi.Streamer
+  forward "/video.mjpg", BirdAppUi.Streamer
   forward "/snap.jpg", BirdAppUiWeb.SnapPlug
 
   pipeline :api do

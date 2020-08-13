@@ -1,5 +1,5 @@
 defmodule BirdAppHardware.Configuration do
-  defstruct size: %{width: 1280, height: 720},
+  defstruct size: %{width: 640, height: 480},
             img_effect: :normal
 
   @typedoc @moduledoc
