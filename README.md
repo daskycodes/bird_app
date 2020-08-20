@@ -1,6 +1,6 @@
 # Birdhouse
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3a513820-0c5d-4afc-a382-e7e4ec590126/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200813%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200813T154553Z&X-Amz-Expires=86400&X-Amz-Signature=3ce48b5c583db93e3aabb23214db93728238d922736b860e1f578be32c39ca57&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+![](https://dev-to-uploads.s3.amazonaws.com/i/0eql7o4eufafcx3irsl3.png)
 
 ## Setup Elixir
 To setup your development environment on either Mac, Linux or Windows head over to the official nerves documentation.
@@ -58,7 +58,7 @@ mix firmware.burn
 
 8. Wait for it to finish booting (5-10 seconds)
 
-9. Open a browser window on your host computer to http://nerves.local/video.mjpeg or ssh to the raspberry with `ssh nerves.local`
+9. Open a browser window on your host computer to http://nerves.local/video.mjpg or ssh to the raspberry with `ssh nerves.local`
 
 10. Now whenever you update the code you can also deploy the update via ssh
 
