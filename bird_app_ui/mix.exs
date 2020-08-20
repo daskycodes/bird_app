@@ -45,7 +45,8 @@ defmodule BirdAppUi.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cowlib, "~> 2.6.0", override: true},
-      {:telegram, git: "https://github.com/visciang/telegram.git", tag: "0.6.1"}
+      {:telegram, git: "https://github.com/visciang/telegram.git", tag: "0.6.1"},
+      {:cubdb, "~> 1.0.0-rc.4"}
     ]
   end
 
