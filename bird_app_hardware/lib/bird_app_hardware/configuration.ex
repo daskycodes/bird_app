@@ -1,12 +1,16 @@
 defmodule BirdAppHardware.Configuration do
   defstruct size: %{width: 640, height: 480},
-            img_effect: :normal
+            img_effect: :normal,
+            vflip: false,
+            hflip: false
 
   @typedoc @moduledoc
   @type t ::
           %__MODULE__{
             size: dimensions(),
-            img_effect: img_effect()
+            img_effect: img_effect(),
+            vflip: vflip(),
+            hflip: hflip()
           }
 
   @type dimensions ::
@@ -16,4 +20,7 @@ defmodule BirdAppHardware.Configuration do
           :normal
           | :sketch
           | :oilpaint
+
+  @type vflip :: boolean()
+  @type hflip :: boolean()
 end

@@ -24,6 +24,8 @@ defmodule BirdAppHardware.Camera do
     conf = %Configuration{}
     Picam.set_size(conf.size.width, conf.size.height)
     Picam.set_img_effect(conf.img_effect)
+    Picam.set_vflip(conf.vflip)
+    Picam.set_hflip(conf.hflip)
     {:ok, conf}
   end
 
