@@ -27,7 +27,11 @@ defmodule BirdAppHardware.Dht do
 
   def handle_event(event, measurements, metadata, _config) do
     GenServer.cast(Dht4, :update)
-    broadcast(:ok, :dht_update, %{humidity: floor(measurements.humidity), temperature: floor(measurements.temperature)})
+
+    broadcast(:ok, :dht_update, %{
+      humidity: floor(measurements.humidity),
+      temperature: floor(measurements.temperature)
+    })
   end
 
   def subscribe do
@@ -41,8 +45,11 @@ defmodule BirdAppHardware.Dht do
 
   defp measurements() do
     case DHT.read(4, :dht22) do
-      {:ok, measurements} -> %{humidity: floor(measurements.humidity), temperature: floor(measurements.temperature)}
-      {:error, _message} -> measurements()
+      {:ok, measurements} ->
+        %{humidity: floor(measurements.humidity), temperature: floor(measurements.temperature)}
+
+      {:error, _message} ->
+        measurements()
     end
   end
 end
