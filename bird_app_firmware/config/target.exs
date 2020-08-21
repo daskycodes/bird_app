@@ -4,6 +4,9 @@ import Config
 import_config "../../bird_app_ui/config/config.exs"
 import_config "../../bird_app_ui/config/prod.exs"
 
+config :bird_app_ui,
+  entries_db_location: "/root/data/entries"
+
 config :bird_app_ui, BirdAppUiWeb.Endpoint,
   # Nerves root filesystem is read-only, so disable the code reloader
   code_reloader: false,

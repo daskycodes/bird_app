@@ -26,4 +26,10 @@ defmodule BirdAppUiWeb.DashboardLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_info({:new_entry, entries}, socket) do
+    send_update(BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: entries)
+    {:noreply, socket}
+  end
+
 end
