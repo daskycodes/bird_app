@@ -8,12 +8,12 @@ defmodule BirdAppUiWeb.SnapCountComponent do
   def mount(socket) do
     if connected?(socket), do: DB.subscribe()
 
-    {:ok, assign(socket, :snaps, DB.entries())}
+    {:ok, assign(socket, :snaps, DB.entries_count())}
   end
 
   @impl true
   def update(_assigns, socket) do
-    {:ok, assign(socket, :snaps, DB.entries())}
+    {:ok, assign(socket, :snaps, DB.entries_count())}
   end
 
   @impl true
@@ -26,8 +26,8 @@ defmodule BirdAppUiWeb.SnapCountComponent do
                   <div class="rounded p-3 bg-green-600"><i class="fa fa-crow fa-2x fa-fw fa-inverse"></i></div>
               </div>
               <div class="flex-1 text-right md:text-center">
-                  <h5 class="font-bold uppercase text-gray-400">Birds snapped</h5>
-                  <h3 class="font-bold text-3xl text-gray-600"><% @snaps %></h3>
+                  <h5 class="font-bold uppercase text-gray-400">Snaps</h5>
+                  <h3 class="font-bold text-3xl text-gray-600"><%= @snaps %></h3>
               </div>
           </div>
       </div>

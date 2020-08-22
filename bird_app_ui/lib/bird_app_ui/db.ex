@@ -3,16 +3,18 @@ defmodule BirdAppUi.DB do
   require Logger
 
   def child_spec(_) do
-    %{id: __MODULE__, start: {CubDB, :start_link, [Application.get_env(:bird_app_ui, :entries_db_location, "data/entries"), [auto_file_sync: true, auto_compact: true], [name: __MODULE__]]}}
+    %{id: __MODULE__, start: {CubDB, :start_link, [Application.get_env(:bird_app_ui, :entries_db_location), [name: __MODULE__]]}}
   end
 
-  def put_entry(entry = %{}) do
+  def put_entry() do
+    entry = BirdAppHardware.Dht.read(Dht4)
+    timestamp = NaiveDateTime.utc_now() |> NaiveDateTime.to_iso8601()
     Logger.debug("Putting entry `#{inspect(entry)}`.")
-    CubDB.put(__MODULE__, entry.timestamp, entry)
+    CubDB.put(__MODULE__, timestamp, entry)
     |> broadcast(:new_entry)
   end
 
-  def entries do
+  def entries_count do
     CubDB.size(__MODULE__)
   end
 
@@ -21,7 +23,7 @@ defmodule BirdAppUi.DB do
   end
 
   defp broadcast(:ok, event) do
-    Phoenix.PubSub.broadcast(BirdAppUi.PubSub, "db", {event, entries()})
+    Phoenix.PubSub.broadcast(BirdAppUi.PubSub, "db", {event, entries_count()})
     :ok
   end
 end
