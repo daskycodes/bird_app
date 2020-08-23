@@ -2,19 +2,7 @@
   <div class="flex flex-wrap">
     <%= live_component @socket, BirdAppUiWeb.TemperatureComponent, id: "temperature", temperature: @temperature %>
     <%= live_component @socket, BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: @humidity %>
-    <div class="w-full md:w-1/3 p-3">
-      <div class="rounded shadow-lg p-2">
-          <div class="flex flex-row items-center">
-              <div class="flex-shrink pr-4">
-                  <div class="rounded p-3 bg-green-600"><i class="fa fa-crow fa-2x fa-fw fa-inverse"></i></div>
-              </div>
-              <div class="flex-1 text-right md:text-center">
-                  <h5 class="font-bold uppercase text-gray-400">Birds seen</h5>
-                  <h3 class="font-bold text-3xl text-gray-600">9001</h3>
-              </div>
-          </div>
-      </div>
-    </div>
+    <%= live_component @socket, BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: @snaps %>
   </div>
 </section>
 
@@ -23,7 +11,7 @@
     <div class="flex flex-wrap">
       <div class="w-full p-3 mx-auto" style="max-width: 680px;">
         <div class="rounded shadow-lg p-2">
-          <svg id="canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" style="background-image: url('video.mjpg');"></svg>
+          <svg class="rounded" id="canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" style="background-image: url('video.mjpg');"></svg>
         </div>
       </div>
 
@@ -31,6 +19,7 @@
         <%= live_component @socket, BirdAppUiWeb.PowerSwitchComponent, id: "power-switch" %>
         <%= live_component @socket, BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch" %>
         <%= live_component @socket, BirdAppUiWeb.TelegramSnapComponent, id: "telegram-snap" %>
+        <%= live_component @socket, BirdAppUiWeb.LastMessageComponent, id: "last-message", message: @message %>
       </div>
     </div>
   </section>

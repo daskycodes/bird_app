@@ -4,6 +4,9 @@ import Config
 import_config "../../bird_app_ui/config/config.exs"
 import_config "../../bird_app_ui/config/prod.exs"
 
+config :bird_app_ui,
+  entries_db_location: "/root/data/entries"
+
 config :bird_app_ui, BirdAppUiWeb.Endpoint,
   # Nerves root filesystem is read-only, so disable the code reloader
   code_reloader: false,
@@ -71,7 +74,7 @@ config :vintage_net,
        type: VintageNetEthernet,
        ipv4: %{method: :dhcp}
      }},
-     {"wlan0",
+    {"wlan0",
      %{
        type: VintageNetWiFi,
        vintage_net_wifi: %{
@@ -115,9 +118,10 @@ config :mdns_lite,
     }
   ]
 
-  config :telegram,
-    bot_token: System.get_env("TELEGRAM_BOT_TOKEN"),
-    chat_id: System.get_env("TELEGRAM_CHAT_ID")
+config :telegram,
+  bot_token: System.get_env("TELEGRAM_BOT_TOKEN"),
+  chat_id: System.get_env("TELEGRAM_CHAT_ID"),
+  chat_url: System.get_env("TELEGRAM_CHAT_URL")
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
