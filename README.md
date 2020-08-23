@@ -1,6 +1,6 @@
 # Birdhouse
 
-![](https://dev-to-uploads.s3.amazonaws.com/i/0eql7o4eufafcx3irsl3.png)
+![](https://git.coco.study/dkhaapam/bird_app/uploads/c9dd526fa8ce4613b5526ac1ad8a3f73/image.png)
 
 ## Setup Elixir
 To setup your development environment on either Mac, Linux or Windows head over to the official nerves documentation.
