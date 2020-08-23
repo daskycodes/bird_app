@@ -1,4 +1,3 @@
-
 defmodule BirdAppUiWeb.SnapCountComponent do
   use BirdAppUiWeb, :live_component
 
@@ -8,12 +7,12 @@ defmodule BirdAppUiWeb.SnapCountComponent do
   def mount(socket) do
     if connected?(socket), do: DB.subscribe()
 
-    {:ok, assign(socket, :snaps, DB.entries_count())}
+    {:ok, assign(socket, :snaps, "Loading...")}
   end
 
   @impl true
-  def update(_assigns, socket) do
-    {:ok, assign(socket, :snaps, DB.entries_count())}
+  def update(assigns, socket) do
+    {:ok, assign(socket, :snaps, assigns.snaps)}
   end
 
   @impl true
@@ -34,5 +33,4 @@ defmodule BirdAppUiWeb.SnapCountComponent do
     </div>
     """
   end
-
 end

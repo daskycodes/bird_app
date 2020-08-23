@@ -2,7 +2,7 @@
   <div class="flex flex-wrap">
     <%= live_component @socket, BirdAppUiWeb.TemperatureComponent, id: "temperature", temperature: @temperature %>
     <%= live_component @socket, BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: @humidity %>
-    <%= live_component @socket, BirdAppUiWeb.SnapCountComponent, id: "snaps" %>
+    <%= live_component @socket, BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: @snaps %>
   </div>
 </section>
 
@@ -19,6 +19,7 @@
         <%= live_component @socket, BirdAppUiWeb.PowerSwitchComponent, id: "power-switch" %>
         <%= live_component @socket, BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch" %>
         <%= live_component @socket, BirdAppUiWeb.TelegramSnapComponent, id: "telegram-snap" %>
+        <%= live_component @socket, BirdAppUiWeb.LastMessageComponent, id: "last-message", message: @message %>
       </div>
     </div>
   </section>

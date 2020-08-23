@@ -1,7 +1,7 @@
 <nav class="nav flex flex-wrap items-center justify-between px-4">
     <div class="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
         <img src="<%= Routes.static_path(@conn, "/images/birdhouse.svg") %>" alt="Birdhouse" class="h-12 p-2"/>
-        <span class="font-semibold text-xl tracking-tight">Birdhouse</span>
+        <a href="/"><span class="font-semibold text-xl tracking-tight">Birdhouse</span></a>
     </div>
     <input class="menu-btn hidden" type="checkbox" id="menu-btn">
     <label class="menu-icon block cursor-pointer md:hidden px-2 py-4 relative select-none" for="menu-btn">
@@ -14,7 +14,7 @@
         </li>
 
         <li class="border-t md:border-none">
-        <a href="https://git.coco.study/dkhaapam/bird_app/" class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Git Repo</a>
+        <a href="https://git.coco.study/dkhaapam/bird_app/" class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Gitlab</a>
         </li>
     </ul>
 </nav>
