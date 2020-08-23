@@ -6,7 +6,14 @@ defmodule BirdAppUiWeb.DashboardLive do
     measurements = BirdAppHardware.Dht.read(Dht4)
     message = BirdAppUi.DB.last_entry()
     snaps = BirdAppUi.DB.entries_count()
-    {:ok, assign(socket, temperature: measurements.temperature, humidity: measurements.humidity, message: message, snaps: snaps)}
+
+    {:ok,
+     assign(socket,
+       temperature: measurements.temperature,
+       humidity: measurements.humidity,
+       message: message,
+       snaps: snaps
+     )}
   end
 
   @impl true

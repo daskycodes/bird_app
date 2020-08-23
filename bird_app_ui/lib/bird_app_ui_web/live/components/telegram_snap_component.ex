@@ -31,11 +31,20 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
          socket |> put_flash(:error, "Message must be smaller than 100") |> push_redirect(to: "/")}
 
       n ->
-        snap = BirdAppHardware.Camera.next_frame()
-        BirdAppUi.DB.put_entry(message)
-        BirdAppUi.Telegram.send_snap(snap)
+        send_snap(message, socket)
+    end
+  end
 
-        {:noreply, socket |> put_flash(:info, "Message sent") |> push_redirect(to: "/")}
+  defp send_snap(message, socket) do
+    snap = BirdAppHardware.Camera.next_frame()
+
+    case BirdAppUi.DB.put_entry(message, snap) do
+      :ok ->
+        # BirdAppUi.Telegram.send_snap(snap)
+        {:noreply, socket |> put_flash(:info, "Snap taken!") |> push_redirect(to: "/")}
+
+      {:error, message} ->
+        {:noreply, socket |> put_flash(:error, message) |> push_redirect(to: "/")}
     end
   end
 end
