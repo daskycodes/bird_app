@@ -40,7 +40,7 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
 
     case BirdAppUi.DB.put_entry(message, snap) do
       :ok ->
-        # BirdAppUi.Telegram.send_snap(snap)
+        BirdAppUi.Telegram.send_snap(snap)
         {:noreply, socket |> put_flash(:info, "Snap taken!") |> push_redirect(to: "/")}
 
       {:error, message} ->
