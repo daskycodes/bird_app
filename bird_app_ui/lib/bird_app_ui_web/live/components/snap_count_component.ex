@@ -1,19 +1,18 @@
-
-defmodule BirdAppUiWeb.HumidityComponent do
+defmodule BirdAppUiWeb.SnapCountComponent do
   use BirdAppUiWeb, :live_component
 
-  alias BirdAppHardware.Dht
+  alias BirdAppUi.DB
 
   @impl true
   def mount(socket) do
-    if connected?(socket), do: Dht.subscribe()
+    if connected?(socket), do: DB.subscribe()
 
-    {:ok, assign(socket, :humidity, "Loading...")}
+    {:ok, assign(socket, :snaps, "Loading...")}
   end
 
   @impl true
   def update(assigns, socket) do
-    {:ok, assign(socket, :humidity, assigns.humidity)}
+    {:ok, assign(socket, :snaps, assigns.snaps)}
   end
 
   @impl true
@@ -23,16 +22,15 @@ defmodule BirdAppUiWeb.HumidityComponent do
       <div class="rounded shadow-lg p-2">
           <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
-                  <div class="rounded p-3 bg-blue-600"><i class="fa fa-tint fa-2x fa-fw fa-inverse"></i></div>
+                  <div class="rounded p-3 bg-green-600"><i class="fa fa-crow fa-2x fa-fw fa-inverse"></i></div>
               </div>
               <div class="flex-1 text-right md:text-center">
-                  <h5 class="font-bold uppercase text-gray-400">Humidity</h5>
-                  <h3 class="font-bold text-3xl text-gray-600"><%= @humidity %>%</h3>
+                  <h5 class="font-bold uppercase text-gray-400">Snaps</h5>
+                  <h3 class="font-bold text-3xl text-gray-600"><%= @snaps %></h3>
               </div>
           </div>
       </div>
     </div>
     """
   end
-
 end

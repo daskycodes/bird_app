@@ -21,6 +21,8 @@ defmodule BirdAppUiWeb.Router do
     pipe_through :browser
 
     live "/", DashboardLive, :index
+    live "/history", SnapHistoryLive, :index
+    get "/snap/:key", SnapController, :image
   end
 
   # Other scopes may use custom stacks.

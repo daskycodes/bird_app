@@ -12,9 +12,10 @@ defmodule BirdAppUi.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: BirdAppUi.PubSub},
       # Start the Endpoint (http/https)
-      BirdAppUiWeb.Endpoint
+      BirdAppUiWeb.Endpoint,
       # Start a worker by calling: BirdAppUi.Worker.start_link(arg)
       # {BirdAppUi.Worker, arg}
+      BirdAppUi.DB
     ]
 
     :telemetry.attach("dht", [:dht, :read], &BirdAppHardware.Dht.handle_event/4, nil)
