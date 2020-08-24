@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="flex-shrink pl-4">
-        <img class="rounded h-24" src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(message, 0)) %>" alt="Camera Snapshot" phx-click="open-modal" phx-value-key="<%= elem(message, 0) %>" />
+        <img class="rounded h-24 cursor-pointer" src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(message, 0)) %>" alt="Camera Snapshot" phx-click="open-modal" phx-value-key="<%= elem(message, 0) %>" />
       </div>
 
     </div>
@@ -32,6 +32,6 @@
                       id: "history-modal",
                       button: "Close",
                       button_action: "close",
-                      key: @key)
+                      image: Routes.snap_path(BirdAppUiWeb.Endpoint, :image, @key))
   %>
 <% end %>
