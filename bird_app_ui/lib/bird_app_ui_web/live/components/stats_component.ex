@@ -1,10 +1,8 @@
-defmodule BirdAppUiWeb.DhtComponent do
+defmodule BirdAppUiWeb.StatsComponent do
   use BirdAppUiWeb, :live_component
 
   @impl true
   def mount(socket) do
-    if connected?(socket), do: BirdAppHardware.Dht.subscribe()
-
     {:ok, socket}
   end
 

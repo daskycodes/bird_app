@@ -30,7 +30,7 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
         {:noreply,
          socket |> put_flash(:error, "Message must be smaller than 100") |> push_redirect(to: "/")}
 
-      n ->
+      _n ->
         send_snap(message, socket)
     end
   end

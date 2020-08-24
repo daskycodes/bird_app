@@ -3,6 +3,8 @@ defmodule BirdAppUiWeb.DashboardLive do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: subscribe()
+
     measurements = BirdAppHardware.Dht.read(Dht4)
     message = BirdAppUi.DB.last_entry()
     snaps = BirdAppUi.DB.entries_count()
@@ -30,19 +32,20 @@ defmodule BirdAppUiWeb.DashboardLive do
 
   @impl true
   def handle_info({:dht_update, measurements}, socket) do
-    send_update(BirdAppUiWeb.DhtComponent, id: "humidity", stats: measurements.humidity)
-
-    send_update(BirdAppUiWeb.DhtComponent, id: "temperature", stats: measurements.temperature)
-
+    send_update(BirdAppUiWeb.StatsComponent, id: "humidity", stats: measurements.humidity)
+    send_update(BirdAppUiWeb.StatsComponent, id: "temperature", stats: measurements.temperature)
     {:noreply, socket}
   end
 
   @impl true
   def handle_info({:new_entry, entries_count, entries}, socket) do
-    send_update(BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: entries_count)
-
+    send_update(BirdAppUiWeb.StatsComponent, id: "snaps", snaps: entries_count)
     send_update(BirdAppUiWeb.LastMessageComponent, id: "last-message", message: entries)
-
     {:noreply, socket}
+  end
+
+  defp subscribe() do
+    BirdAppHardware.Dht.subscribe()
+    BirdAppUi.DB.subscribe()
   end
 end

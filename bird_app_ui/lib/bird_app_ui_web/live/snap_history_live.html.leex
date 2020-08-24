@@ -1,8 +1,8 @@
 <section class="container mx-auto my-10">
   <div class="flex flex-wrap">
-    <%= live_component @socket, BirdAppUiWeb.DhtComponent, id: "temperature", stats: @temperature, stats_name: "Temperature", color: "orange", icon: "fa-thermometer-half", character: "°C" %>
-    <%= live_component @socket, BirdAppUiWeb.DhtComponent, id: "humidity", stats: @humidity, stats_name: "Humidity", color: "blue", icon: "fa-tint", character: "%" %>
-    <%= live_component @socket, BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: @snaps %>
+    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "temperature", stats: @temperature, stats_name: "Temperature", color: "orange", icon: "fa-thermometer-half", character: "°C" %>
+    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "humidity", stats: @humidity, stats_name: "Humidity", color: "blue", icon: "fa-tint", character: "%" %>
+    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "snaps", stats: @snaps, stats_name: "Snaps", color: "green", icon: "fa-crow", character: "" %>
   </div>
 </section>
 
