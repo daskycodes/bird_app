@@ -18,18 +18,6 @@ defmodule BirdAppUiWeb.SnapHistoryLive do
   end
 
   @impl true
-  def handle_info({:dht_update, measurements}, socket) do
-    send_update(BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: measurements.humidity)
-
-    send_update(BirdAppUiWeb.TemperatureComponent,
-      id: "temperature",
-      temperature: measurements.temperature
-    )
-
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
@@ -49,6 +37,7 @@ defmodule BirdAppUiWeb.SnapHistoryLive do
     )
   end
 
+  @impl true
   def handle_event("open-modal", %{"key" => key}, socket) do
     {:noreply,
      socket
@@ -59,6 +48,16 @@ defmodule BirdAppUiWeb.SnapHistoryLive do
      )}
   end
 
+  @impl true
+  def handle_info({:dht_update, measurements}, socket) do
+    send_update(BirdAppUiWeb.DhtComponent, id: "humidity", stats: measurements.humidity)
+
+    send_update(BirdAppUiWeb.DhtComponent, id: "temperature", stats: measurements.temperature)
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_info(
         {BirdAppUiWeb.ModalComponent, :button_clicked, %{action: "close"}},
         socket

@@ -1,18 +1,16 @@
-defmodule BirdAppUiWeb.HumidityComponent do
+defmodule BirdAppUiWeb.DhtComponent do
   use BirdAppUiWeb, :live_component
-
-  alias BirdAppHardware.Dht
 
   @impl true
   def mount(socket) do
-    if connected?(socket), do: Dht.subscribe()
+    if connected?(socket), do: BirdAppHardware.Dht.subscribe()
 
-    {:ok, assign(socket, :humidity, "Loading...")}
+    {:ok, socket}
   end
 
   @impl true
   def update(assigns, socket) do
-    {:ok, assign(socket, :humidity, assigns.humidity)}
+    {:ok, assign(socket, assigns)}
   end
 
   @impl true
@@ -22,11 +20,11 @@ defmodule BirdAppUiWeb.HumidityComponent do
       <div class="rounded shadow-lg p-2">
           <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
-                  <div class="rounded p-3 bg-blue-600"><i class="fa fa-tint fa-2x fa-fw fa-inverse"></i></div>
+                  <div class="rounded p-3 bg-<%= @color %>-600"><i class="fa <%= @icon %> fa-2x fa-fw fa-inverse"></i></div>
               </div>
               <div class="flex-1 text-right md:text-center">
-                  <h5 class="font-bold uppercase text-gray-400">Humidity</h5>
-                  <h3 class="font-bold text-3xl text-gray-600"><%= @humidity %>%</h3>
+                  <h5 class="font-bold uppercase text-gray-400"><%= @stats_name %></h5>
+                  <h3 class="font-bold text-3xl text-gray-600"><%= @stats %><%= @character %></h3>
               </div>
           </div>
       </div>
