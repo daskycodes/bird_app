@@ -19,7 +19,7 @@ defmodule BirdAppUiWeb.ServoSwitchComponent do
   def render(assigns) do
     ~L"""
     <button class="w-full font-bold bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 rounded shadow my-2" phx-click="switch-pulsewidth" phx-target="<%= @myself %>">
-      Foodcontainer is <%= if (@pulsewidth == 1000), do: "closed", else: "open" %>
+      Sail is <%= if (@pulsewidth == 1000), do: "up", else: "down" %>
     </button>
     """
   end

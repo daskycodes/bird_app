@@ -18,14 +18,54 @@ defmodule BirdAppUiWeb.SnapHistoryLive do
   end
 
   @impl true
-  def handle_info({:dht_update, measurements}, socket) do
-    send_update(BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: measurements.humidity)
+  def handle_params(params, _url, socket) do
+    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
 
-    send_update(BirdAppUiWeb.TemperatureComponent,
-      id: "temperature",
-      temperature: measurements.temperature
+  def apply_action(socket, :index, _params) do
+    assign(socket, show_modal: false)
+  end
+
+  def apply_action(socket, :modal, params) do
+    assign(socket, show_modal: true, key: Map.get(params, "key"))
+  end
+
+  def apply_action(socket, _live_action, _params) do
+    push_patch(socket,
+      to: Routes.snap_history_path(socket, :index),
+      replace: true
     )
+  end
+
+  @impl true
+  def handle_event("open-modal", %{"key" => key}, socket) do
+    {:noreply,
+     socket
+     |> assign(:key, key)
+     |> push_patch(
+       to: Routes.snap_history_path(socket, :modal, key),
+       replace: true
+     )}
+  end
+
+  @impl true
+  def handle_info({:dht_update, measurements}, socket) do
+    send_update(BirdAppUiWeb.DhtComponent, id: "humidity", stats: measurements.humidity)
+
+    send_update(BirdAppUiWeb.DhtComponent, id: "temperature", stats: measurements.temperature)
 
     {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(
+        {BirdAppUiWeb.ModalComponent, :button_clicked, %{action: "close"}},
+        socket
+      ) do
+    {:noreply,
+     push_patch(socket,
+       to: Routes.snap_history_path(socket, :index),
+       replace: true
+     )}
   end
 end

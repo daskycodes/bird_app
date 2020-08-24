@@ -30,12 +30,9 @@ defmodule BirdAppUiWeb.DashboardLive do
 
   @impl true
   def handle_info({:dht_update, measurements}, socket) do
-    send_update(BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: measurements.humidity)
+    send_update(BirdAppUiWeb.DhtComponent, id: "humidity", stats: measurements.humidity)
 
-    send_update(BirdAppUiWeb.TemperatureComponent,
-      id: "temperature",
-      temperature: measurements.temperature
-    )
+    send_update(BirdAppUiWeb.DhtComponent, id: "temperature", stats: measurements.temperature)
 
     {:noreply, socket}
   end

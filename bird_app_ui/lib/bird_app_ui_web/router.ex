@@ -22,6 +22,8 @@ defmodule BirdAppUiWeb.Router do
 
     live "/", DashboardLive, :index
     live "/history", SnapHistoryLive, :index
+    live "/history/:key", SnapHistoryLive, :modal
+
     get "/snap/:key", SnapController, :image
   end
 

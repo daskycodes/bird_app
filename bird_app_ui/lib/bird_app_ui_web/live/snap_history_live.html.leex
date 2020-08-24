@@ -1,7 +1,7 @@
 <section class="container mx-auto my-10">
   <div class="flex flex-wrap">
-    <%= live_component @socket, BirdAppUiWeb.TemperatureComponent, id: "temperature", temperature: @temperature %>
-    <%= live_component @socket, BirdAppUiWeb.HumidityComponent, id: "humidity", humidity: @humidity %>
+    <%= live_component @socket, BirdAppUiWeb.DhtComponent, id: "temperature", stats: @temperature, stats_name: "Temperature", color: "orange", icon: "fa-thermometer-half", character: "°C" %>
+    <%= live_component @socket, BirdAppUiWeb.DhtComponent, id: "humidity", stats: @humidity, stats_name: "Humidity", color: "blue", icon: "fa-tint", character: "%" %>
     <%= live_component @socket, BirdAppUiWeb.SnapCountComponent, id: "snaps", snaps: @snaps %>
   </div>
 </section>
@@ -18,9 +18,20 @@
         </div>
       </div>
       <div class="flex-shrink pl-4">
-        <img class="rounded h-24" src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(message, 0)) %>" alt="Camera Snapshot" />
+        <img class="rounded h-24 cursor-pointer" src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(message, 0)) %>" alt="Camera Snapshot" phx-click="open-modal" phx-value-key="<%= elem(message, 0) %>" />
       </div>
+
     </div>
     <% end %>
   </section>
 </div>
+
+<%= if @show_modal do %>
+  <%= live_component(@socket,
+                      BirdAppUiWeb.ModalComponent,
+                      id: "history-modal",
+                      button: "Close",
+                      button_action: "close",
+                      image: Routes.snap_path(BirdAppUiWeb.Endpoint, :image, @key))
+  %>
+<% end %>
