@@ -38,9 +38,9 @@ defmodule BirdAppUiWeb.DashboardLive do
   end
 
   @impl true
-  def handle_info({:new_entry, entries_count, entries}, socket) do
+  def handle_info({:new_entry, entries_count, last_entry}, socket) do
     send_update(BirdAppUiWeb.StatsComponent, id: "snaps", snaps: entries_count)
-    send_update(BirdAppUiWeb.LastMessageComponent, id: "last-message", message: entries)
+    send_update(BirdAppUiWeb.MessageComponent, id: "last-message", message: last_entry)
     {:noreply, socket}
   end
 

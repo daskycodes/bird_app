@@ -19,7 +19,10 @@
         <%= live_component @socket, BirdAppUiWeb.PowerSwitchComponent, id: "power-switch" %>
         <%= live_component @socket, BirdAppUiWeb.ServoSwitchComponent, id: "servo-switch" %>
         <%= live_component @socket, BirdAppUiWeb.TelegramSnapComponent, id: "telegram-snap" %>
-        <%= live_component @socket, BirdAppUiWeb.LastMessageComponent, id: "last-message", message: @message %>
+        <%= live_component @socket, BirdAppUiWeb.MessageComponent, id: "last-message", message: @message %>
+        <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4 flex flex-row items-center">
+          <a href="<%= BirdAppUi.Telegram.chat_url() %>" class="block text-blue-600 text-sm font-bold mt-2">Join the telegram chat now!</a>
+        </div>
       </div>
     </div>
   </section>

@@ -1,28 +1,15 @@
-<section class="container mx-auto my-10">
-  <div class="flex flex-wrap">
-    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "temperature", stats: @temperature, stats_name: "Temperature", color: "orange", icon: "fa-thermometer-half", character: "°C" %>
-    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "humidity", stats: @humidity, stats_name: "Humidity", color: "blue", icon: "fa-tint", character: "%" %>
-    <%= live_component @socket, BirdAppUiWeb.StatsComponent, id: "snaps", stats: @snaps, stats_name: "Snaps", color: "green", icon: "fa-crow", character: "" %>
-  </div>
-</section>
-
 <div style="background-image: url(<%= Routes.static_path(@socket, "/images/wave.svg") %>);background-position-y: bottom;background-size: cover;">
   <section class="container mx-auto mt-10 pb-8">
-    <%= for message <- @messages do %>
-    <div class="bg-white shadow rounded px-8 pt-6 pb-8 m-4 flex flex-row items-center">
-      <div class="flex-1">
-        <p class="w-full py-2 break-words"/><%= elem(message, 1).message %></p>
-        <div class="text-sm">
-          <p class="text-gray-900 leading-none">Anonymous</p>
-          <p class="text-gray-600"><%= elem(message, 0) %></p>
-        </div>
-      </div>
-      <div class="flex-shrink pl-4">
-        <img class="rounded h-24 cursor-pointer" src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(message, 0)) %>" alt="Camera Snapshot" phx-click="open-modal" phx-value-key="<%= elem(message, 0) %>" />
-      </div>
-
+    <div class="m-4">
+      <%= for message <- @messages do %>
+        <%= live_component @socket,
+                            BirdAppUiWeb.MessageComponent,
+                            message: message,
+                            click_action: "open-modal",
+                            cursor: "cursor-pointer"
+        %>
+      <% end %>
     </div>
-    <% end %>
   </section>
 </div>
 
