@@ -24,11 +24,11 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
     case String.length(message) do
       n when n < 2 ->
         {:noreply,
-         socket |> put_flash(:error, "Message must be greater than 2") |> push_redirect(to: "/")}
+         socket |> put_flash(:error, "Please use at least 2 characters") |> push_redirect(to: "/")}
 
       n when n > 100 ->
         {:noreply,
-         socket |> put_flash(:error, "Message must be smaller than 100") |> push_redirect(to: "/")}
+         socket |> put_flash(:error, "Message must be smaller than 100 characters") |> push_redirect(to: "/")}
 
       _n ->
         send_snap(message, socket)
