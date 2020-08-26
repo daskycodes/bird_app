@@ -4,6 +4,11 @@ import Config
 import_config "../../bird_app_ui/config/config.exs"
 import_config "../../bird_app_ui/config/prod.exs"
 
+config :bird_app_hardware,
+  led_pin: 18,
+  dht_pin: 4,
+  servo_pin: 13
+
 config :bird_app_ui,
   entries_db_location: "/root/data/entries"
 

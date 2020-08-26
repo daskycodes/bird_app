@@ -2,13 +2,15 @@ defmodule BirdAppHardware.Dht do
   use GenServer
   require Logger
 
+  @dht_pin Application.get_env(:bird_app_hardware, :dht_pin, 4)
+
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: Dht4)
   end
 
   def init(_state) do
     Logger.info("Starting DHT Sensor")
-    DHT.start_polling(4, :dht22, 2)
+    DHT.start_polling(@dht_pin, :dht22, 2)
     state = measurements()
     {:ok, state}
   end
@@ -21,11 +23,11 @@ defmodule BirdAppHardware.Dht do
     {:reply, state, state}
   end
 
-  def handle_cast(:update, state) do
+  def handle_cast(:update, _state) do
     {:noreply, measurements()}
   end
 
-  def handle_event(event, measurements, metadata, _config) do
+  def handle_event(_event, measurements, _metadata, _config) do
     GenServer.cast(Dht4, :update)
 
     broadcast(:ok, :dht_update, %{
@@ -44,7 +46,7 @@ defmodule BirdAppHardware.Dht do
   end
 
   defp measurements() do
-    case DHT.read(4, :dht22) do
+    case DHT.read(@dht_pin, :dht22) do
       {:ok, measurements} ->
         %{humidity: floor(measurements.humidity), temperature: floor(measurements.temperature)}
 
