@@ -6,10 +6,29 @@
                             BirdAppUiWeb.MessageComponent,
                             message: message,
                             click_action: "open-modal",
-                            cursor: "cursor-pointer"
+                            cursor: "cursor-pointer",
+                            page: @page
         %>
       <% end %>
     </div>
+    <nav class="bg-white shadow rounded px-8 pt-6 pb-8 m-4">
+      <ul class="flex justify-between">
+        <li class="mr-3">
+          <%= if @page == 1 do %>
+            <a class="inline-block py-2 px-4 text-gray-400 cursor-not-allowed">Previous</a>
+          <% else %>
+            <a class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4 cursor-pointer" phx-click="previous">Previous</a>
+          <% end %>
+        </li>
+        <li class="mr-3">
+          <%= if @page >= DB.pages_count() do %>
+            <a class="inline-block py-2 px-4 text-gray-400 cursor-not-allowed">Next</a>
+          <% else %>
+            <a class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4 cursor-pointer" phx-click="next">Next</a>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
   </section>
 </div>
 
@@ -19,6 +38,7 @@
                       id: "history-modal",
                       button: "Close",
                       button_action: "close",
+                      button_param: @page,
                       image: Routes.snap_path(BirdAppUiWeb.Endpoint, :image, @key))
   %>
 <% end %>

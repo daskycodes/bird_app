@@ -1,6 +1,8 @@
 defmodule BirdAppUi.DB do
   require Logger
 
+  @page_size 10
+
   def child_spec(_) do
     %{
       id: __MODULE__,
@@ -14,7 +16,7 @@ defmodule BirdAppUi.DB do
   end
 
   def put_entry(message, snap) do
-    if seconds_passed?(60) do
+    if is_nil(last_entry()) || seconds_passed?(60) do
       timestamp = NaiveDateTime.to_iso8601(NaiveDateTime.utc_now())
       entry = BirdAppHardware.Dht.read(Dht4) |> Map.merge(%{message: message, snap: snap})
 
@@ -36,6 +38,21 @@ defmodule BirdAppUi.DB do
     entries
   end
 
+  def paginate(page) when page >= 1 do
+    {:ok, entries} =
+      CubDB.select(__MODULE__,
+        min_key: nil,
+        max_key: "all",
+        reverse: true,
+        pipe: [
+          drop: (page - 1) * @page_size,
+          take: 10
+        ]
+      )
+
+    entries
+  end
+
   def last_entry() do
     {:ok, entries} =
       CubDB.select(__MODULE__, min_key: nil, max_key: "all", reverse: true, pipe: [take: 1])
@@ -45,6 +62,10 @@ defmodule BirdAppUi.DB do
 
   def entries_count do
     CubDB.size(__MODULE__)
+  end
+
+  def pages_count do
+    ceil(entries_count() / @page_size)
   end
 
   def subscribe do

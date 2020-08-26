@@ -10,7 +10,7 @@ config :bird_app_hardware,
   servo_pin: 23
 
 config :bird_app_ui,
-  entries_db_location: "/root/data/entries"
+  entries_db_location: "/root/data/bird_snaps"
 
 config :bird_app_ui, BirdAppUiWeb.Endpoint,
   # Nerves root filesystem is read-only, so disable the code reloader

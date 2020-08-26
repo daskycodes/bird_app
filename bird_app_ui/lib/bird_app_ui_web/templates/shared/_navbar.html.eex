@@ -14,7 +14,11 @@
         </li>
 
         <li class="border-t md:border-none">
-          <a href="/history" class="block md:inline-block px-4 py-3 no-underline text-grey-darkest">History</a>
+          <a href="/history/1" class="block md:inline-block px-4 py-3 no-underline text-grey-darkest">History</a>
+        </li>
+
+        <li class="border-t md:border-none">
+          <a href="<%= BirdAppUi.Telegram.chat_url() %>" class="block md:inline-block px-4 py-3 no-underline text-grey-darkest">Telegram</a>
         </li>
 
         <li class="border-t md:border-none">

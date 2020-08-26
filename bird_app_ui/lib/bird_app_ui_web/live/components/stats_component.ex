@@ -18,6 +18,9 @@ defmodule BirdAppUiWeb.StatsComponent do
       <div class="rounded shadow-lg p-2">
           <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
+                  <!-- empty div so bg-colors don't get purged while we load the css class from the @color variable -->
+                  <div class="bg-green-600 bg-blue-600 bg-orange-600 hidden"></div>
+
                   <div class="rounded p-3 bg-<%= @color %>-600"><i class="fa <%= @icon %> fa-2x fa-fw fa-inverse"></i></div>
               </div>
               <div class="flex-1 text-right md:text-center">

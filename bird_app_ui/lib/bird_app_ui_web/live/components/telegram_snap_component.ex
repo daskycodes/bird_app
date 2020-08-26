@@ -28,7 +28,9 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
 
       n when n > 100 ->
         {:noreply,
-         socket |> put_flash(:error, "Message must be smaller than 100 characters") |> push_redirect(to: "/")}
+         socket
+         |> put_flash(:error, "Message must be smaller than 100 characters")
+         |> push_redirect(to: "/")}
 
       _n ->
         send_snap(message, socket)
@@ -41,6 +43,7 @@ defmodule BirdAppUiWeb.TelegramSnapComponent do
     case BirdAppUi.DB.put_entry(message, snap) do
       :ok ->
         BirdAppUi.Telegram.send_snap(snap)
+        BirdAppUi.Telegram.send_message(message)
         {:noreply, socket |> put_flash(:info, "Snap taken!") |> push_redirect(to: "/")}
 
       {:error, message} ->
