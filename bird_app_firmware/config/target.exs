@@ -7,7 +7,7 @@ import_config "../../bird_app_ui/config/prod.exs"
 config :bird_app_hardware,
   led_pin: 18,
   dht_pin: 4,
-  servo_pin: 13
+  servo_pin: 23
 
 config :bird_app_ui,
   entries_db_location: "/root/data/entries"

@@ -6,14 +6,13 @@ defmodule BirdAppHardware.Servo do
   @servo_pin Application.get_env(:bird_app_hardware, :servo_pin, 23)
 
   def switch_pulsewidth() do
-    case state() do
-      1000 -> GPIO.set_servo_pulsewidth(@servo_pin, 2000)
-      2000 -> GPIO.set_servo_pulsewidth(@servo_pin, 1000)
-      _ -> GPIO.set_servo_pulsewidth(@servo_pin, 1000)
-    end
-
-    broadcast(:ok, :pulsewidth_switched)
-    :ok
+    if BirdAppHardware.Servo.state() == 1000,
+      do:
+        GPIO.set_servo_pulsewidth(@servo_pin, 2000)
+        |> broadcast(:pulsewidth_switched),
+      else:
+        GPIO.set_servo_pulsewidth(@servo_pin, 1000)
+        |> broadcast(:pulsewidth_switched)
   end
 
   def state() do
