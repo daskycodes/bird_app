@@ -2,6 +2,23 @@
 
 ![](https://git.coco.study/dkhaapam/bird_app/uploads/c9dd526fa8ce4613b5526ac1ad8a3f73/image.png)
 
+## Hardware needed
+
+We using the following hardware for our project:
+
+- Raspberry 3
+- Raspberry Pi Camera V2
+- A simple LED connected to GPIO Pin 18 and GND
+- A simple Servo motor connected to GPIO Pin 23, 5V and GND
+- A DHT22 Temperature/Humidity sensor connected to GPIO Pin 4, 3.3V and GND
+
+
+|       | GND | 3.3V | 5V | GPIO |
+|-------|-----|------|----|------|
+| DHT22 | x   | x    |    | 4    |
+| Servo | x   |      | x  | 23   |
+| LED   | x   |      |    | 18   |
+
 ## Setup Elixir
 To setup your development environment on either Mac, Linux or Windows head over to the official nerves documentation.
 
@@ -39,14 +56,41 @@ cd ../bird_app_firmware
 ```bash
 export MIX_TARGET=rpi3
 export MIX_ENV=dev
-export TELEGRAM_BOT_TOKEN=*BOT_TOKEN*
-export TELEGRAM_CHAT_ID=*CHAT_ID*
+
+# For the telegram bot functions
+# export TELEGRAM_BOT_TOKEN=bot_token
+# export TELEGRAM_CHAT_ID=chat_id
+#
 # If you're using WiFi:
 # export NERVES_NETWORK_SSID=your_wifi_name
 # export NERVES_NETWORK_PSK=your_wifi_password
 ```
 
-5. Get dependencies, build firmware, and burn it to an SD card:
+5. Set up the config
+
+Configure the hardware pins and the ssh keys you want to use
+
+```elixir
+#... bird_app/bird_app_firmware/config/target.exs
+
+# ...
+config :bird_app_hardware,
+  led_pin: 18,
+  dht_pin: 4,
+  servo_pin: 23
+# ...
+
+# ...
+keys =
+  [
+    Path.join([System.user_home!(), ".ssh", "id_rsa.pub"]),
+    Path.join([System.user_home!(), ".ssh", "id_ecdsa.pub"]),
+    Path.join([System.user_home!(), ".ssh", "id_ed25519.pub"])
+  ]
+# ...
+```
+
+6. Get dependencies, build firmware, and burn it to an SD card:
 
 ```bash
 mix deps.get
