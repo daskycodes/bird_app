@@ -1,8 +1,6 @@
 import Config
 
-# When we deploy to a device, we use the "prod" configuration:
 import_config "../../bird_app_ui/config/config.exs"
-import_config "../../bird_app_ui/config/prod.exs"
 
 config :bird_app_hardware,
   led_pin: 18,
@@ -20,7 +18,7 @@ config :bird_app_ui, BirdAppUiWeb.Endpoint,
   load_from_system_env: false,
   # Start the server since we're running in a release instead of through `mix`
   server: true,
-  url: [host: "nerves.local"]
+  url: [host: "birdhouse.cam"]
 
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those

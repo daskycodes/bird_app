@@ -10,8 +10,16 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :bird_app_ui, BirdAppUiWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["//*.birdhouse.cam"],
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/bird_app_ui_web/(live|views)/.*(ex)$",
+      ~r"lib/bird_app_ui_web/templates/.*(eex)$"
+    ]
+  ]
 
 # Do not print debug messages in production
 config :logger, level: :info
