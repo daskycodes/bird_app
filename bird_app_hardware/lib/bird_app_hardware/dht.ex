@@ -23,12 +23,16 @@ defmodule BirdAppHardware.Dht do
     {:reply, state, state}
   end
 
-  def handle_cast(:update, _state) do
-    {:noreply, measurements()}
+  def handle_cast({:update, measurements}, _state) do
+    {:noreply,
+     %{
+       humidity: floor(measurements.humidity),
+       temperature: floor(measurements.temperature)
+     }}
   end
 
   def handle_event(_event, measurements, _metadata, _config) do
-    GenServer.cast(Dht4, :update)
+    GenServer.cast(Dht4, {:update, measurements})
 
     broadcast(:ok, :dht_update, %{
       humidity: floor(measurements.humidity),
