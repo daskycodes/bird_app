@@ -120,12 +120,6 @@ config :mdns_lite,
       port: 4369
     }
   ]
-
-config :telegram,
-  bot_token: System.get_env("TELEGRAM_BOT_TOKEN"),
-  chat_id: System.get_env("TELEGRAM_CHAT_ID"),
-  chat_url: System.get_env("TELEGRAM_CHAT_URL")
-
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
