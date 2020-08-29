@@ -10,9 +10,6 @@ defmodule BirdAppUiWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  forward "/video.mjpg", BirdAppUi.Streamer
-  forward "/snap.jpg", BirdAppUiWeb.SnapPlug
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -24,7 +21,10 @@ defmodule BirdAppUiWeb.Router do
     live "/history/:page", SnapHistoryLive, :index
     live "/history/:page/:key", SnapHistoryLive, :modal
 
-    get "/snap/:key", SnapController, :image
+    forward "/video.mjpg", Streamer
+
+    get "/snap/:key", SnapController, :snap
+    get "/snap.jpg", SnapController, :current_snap
   end
 
   # Other scopes may use custom stacks.

@@ -1,14 +1,17 @@
 defmodule BirdAppUiWeb.SnapController do
   use BirdAppUiWeb, :controller
 
-  def image(conn, %{"key" => key}) do
+  def snap(conn, %{"key" => key}) do
     entry = BirdAppUi.DB.get_entry(key)
 
     conn
-    |> put_resp_header("Age", "0")
-    |> put_resp_header("Cache-Control", "no-cache, private")
-    |> put_resp_header("Pragma", "no-cache")
-    |> put_resp_header("Content-Type", "image/jpeg")
+    |> put_resp_content_type("image/jpeg")
     |> send_resp(200, entry.snap)
+  end
+
+  def current_snap(conn, _params) do
+    conn
+    |> put_resp_content_type("image/jpeg")
+    |> send_resp(200, BirdAppHardware.Camera.next_frame())
   end
 end

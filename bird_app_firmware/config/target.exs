@@ -18,7 +18,7 @@ config :bird_app_ui, BirdAppUiWeb.Endpoint,
   load_from_system_env: false,
   # Start the server since we're running in a release instead of through `mix`
   server: true,
-  url: [host: "birdhouse.cam"]
+  url: [host: "birdhouse.cam", port: 443]
 
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those

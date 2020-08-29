@@ -36,7 +36,7 @@ defmodule BirdAppUiWeb.MessageComponent do
       </div>
       <div class="flex-shrink pl-4">
         <img class="rounded h-24 <%= @cursor %>"
-              src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :image, elem(@message, 0)) %>"
+              src="<%= Routes.snap_path(BirdAppUiWeb.Endpoint, :snap, elem(@message, 0)) %>"
               alt="Camera Snapshot"
               phx-click="<%= @click_action %>"
               phx-value-key="<%= elem(@message, 0) %>"

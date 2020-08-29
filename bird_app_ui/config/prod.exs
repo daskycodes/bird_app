@@ -19,7 +19,19 @@ config :bird_app_ui, BirdAppUiWeb.Endpoint,
       ~r"lib/bird_app_ui_web/(live|views)/.*(ex)$",
       ~r"lib/bird_app_ui_web/templates/.*(eex)$"
     ]
+  ],
+  https: [
+    port: 443,
+    cipher_suite: :strong,
+    otp_app: :bird_app_ui,
+    keyfile: "priv/crt.key",
+    certfile: "priv/crt.crt",
+    cacertfile: "priv/crt.ca-bundle",
+    transport_options: [socket_opts: [:inet6]]
   ]
+
+config :bird_app_ui, BirdAppUiWeb.Endpoint,
+  force_ssl: [hsts: true]
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -60,4 +72,5 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
+
 import_config "prod.secret.exs"

@@ -1,4 +1,4 @@
-defmodule BirdAppUi.Streamer do
+defmodule BirdAppUiWeb.BirdAppUiWeb.Streamer do
   @moduledoc """
   Plug for streaming an image
   """
