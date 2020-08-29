@@ -4,7 +4,7 @@
 
 ## Hardware needed
 
-We using the following hardware for our project:
+We are using the following hardware for our birdhouse:
 
 - Raspberry 3
 - Raspberry Pi Camera V2
@@ -60,6 +60,7 @@ export MIX_ENV=dev
 # For the telegram bot functions
 # export TELEGRAM_BOT_TOKEN=bot_token
 # export TELEGRAM_CHAT_ID=chat_id
+# export TELEGRAM_CHAT_URL=chat_url
 #
 # If you're using WiFi:
 # export NERVES_NETWORK_SSID=your_wifi_name
