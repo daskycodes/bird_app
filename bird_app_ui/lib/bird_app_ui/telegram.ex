@@ -1,7 +1,6 @@
 defmodule BirdAppUi.Telegram do
 
-  @token Application.fetch_env!(:nadia, :token)
-  @chat_id Application.fetch_env!(:nadia, :chat_id)
+  @chat_id Application.get_env(:nadia, :chat_id)
 
   def send(message, snap) do
     send_message(message)
