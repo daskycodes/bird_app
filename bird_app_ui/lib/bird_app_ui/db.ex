@@ -18,7 +18,7 @@ defmodule BirdAppUi.DB do
   def put_entry(message, snap) do
     if is_nil(last_entry()) || seconds_passed?(60) do
       timestamp = NaiveDateTime.to_iso8601(NaiveDateTime.utc_now())
-      entry = BirdAppHardware.Dht.read(Dht4) |> Map.merge(%{message: message, snap: snap})
+      entry = BirdAppHardware.Dht.read() |> Map.merge(%{message: message, snap: snap})
 
       CubDB.put(__MODULE__, timestamp, entry)
       |> broadcast(:new_entry)

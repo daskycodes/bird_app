@@ -5,7 +5,7 @@ defmodule BirdAppUiWeb.DashboardLive do
   def mount(_params, _session, socket) do
     if connected?(socket), do: subscribe()
 
-    measurements = BirdAppHardware.Dht.read(Dht4)
+    measurements = BirdAppHardware.Dht.read()
     message = BirdAppUi.DB.last_entry()
     snaps = BirdAppUi.DB.entries_count()
 

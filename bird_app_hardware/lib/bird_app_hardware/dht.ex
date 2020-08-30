@@ -5,7 +5,7 @@ defmodule BirdAppHardware.Dht do
   @dht_pin Application.get_env(:bird_app_hardware, :dht_pin, 4)
 
   def start_link(state \\ []) do
-    GenServer.start_link(__MODULE__, state, name: Dht4)
+    GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
   def init(_state) do
@@ -15,8 +15,8 @@ defmodule BirdAppHardware.Dht do
     {:ok, state}
   end
 
-  def read(Dht4) do
-    GenServer.call(Dht4, :read)
+  def read() do
+    GenServer.call(__MODULE__, :read)
   end
 
   def handle_call(:read, _from, state) do
@@ -32,7 +32,7 @@ defmodule BirdAppHardware.Dht do
   end
 
   def handle_event(_event, measurements, _metadata, _config) do
-    GenServer.cast(Dht4, {:update, measurements})
+    GenServer.cast(__MODULE__, {:update, measurements})
 
     broadcast(:ok, :dht_update, %{
       humidity: floor(measurements.humidity),
