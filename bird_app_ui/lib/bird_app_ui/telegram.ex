@@ -17,6 +17,6 @@ defmodule BirdAppUi.Telegram do
   end
 
   def chat_url() do
-    Application.fetch_env!(:nadia, :chat_url)
+    Application.get_env(:nadia, :chat_url)
   end
 end

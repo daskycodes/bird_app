@@ -3,7 +3,7 @@ defmodule BirdAppHardware.Servo do
 
   alias Pigpiox.GPIO
 
-  @servo_pin Application.get_env(:bird_app_hardware, :servo_pin, 23)
+  @servo_pin Application.get_env(:bird_app_hardware, :servo_pin)
 
   def switch_pulsewidth() do
     if BirdAppHardware.Servo.state() == 1000,
