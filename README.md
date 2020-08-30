@@ -6,7 +6,7 @@
 
 We are using the following hardware for our birdhouse:
 
-- Raspberry 3
+- Raspberry Pi 3
 - Raspberry Pi Camera V2
 - A simple LED connected to GPIO Pin 18 and GND
 - A simple Servo motor connected to GPIO Pin 23, 5V and GND
@@ -103,7 +103,7 @@ mix firmware.burn
 
 8. Wait for it to finish booting (5-10 seconds)
 
-9. Open a browser window on your host computer to http://nerves.local/video.mjpg or ssh to the raspberry with `ssh nerves.local`
+9. Open a browser window on your host computer to http://nerves.local/ or ssh to the raspberry with `ssh nerves.local`
 
 10. Now whenever you update the code you can also deploy the update via ssh
 
