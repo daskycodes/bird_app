@@ -11,8 +11,7 @@ defmodule BirdAppHardware.Dht do
   def init(_state) do
     Logger.info("Starting DHT Sensor")
     DHT.start_polling(@dht_pin, :dht22, 2)
-    state = measurements()
-    {:ok, state}
+    {:ok, %{temperature: "Loading...", humidity: "Loading..."}}
   end
 
   def read() do
@@ -33,8 +32,7 @@ defmodule BirdAppHardware.Dht do
 
   def handle_event(_event, measurements, _metadata, _config) do
     GenServer.cast(__MODULE__, {:update, measurements})
-
-    broadcast(:ok, :dht_update, %{
+    |> broadcast(:dht_update, %{
       humidity: floor(measurements.humidity),
       temperature: floor(measurements.temperature)
     })
@@ -47,15 +45,5 @@ defmodule BirdAppHardware.Dht do
   defp broadcast(:ok, event, data) do
     Phoenix.PubSub.broadcast(BirdAppUi.PubSub, "dht", {event, data})
     {:ok, data}
-  end
-
-  defp measurements() do
-    case DHT.read(@dht_pin, :dht22) do
-      {:ok, measurements} ->
-        %{humidity: floor(measurements.humidity), temperature: floor(measurements.temperature)}
-
-      {:error, _message} ->
-        measurements()
-    end
   end
 end
