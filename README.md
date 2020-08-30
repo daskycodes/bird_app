@@ -24,6 +24,12 @@ To setup your development environment on either Mac, Linux or Windows head over 
 
 [Installation](https://hexdocs.pm/nerves/installation.html)
 
+## Setup node.js
+
+We do also need node.js for our UI.
+
+[asdf-nodejs](https://github.com/asdf-vm/asdf-nodejs)
+
 ## Setup Project
 
 1. Prepare your Phoenix project to build JavaScript and CSS assets:
