@@ -3,7 +3,7 @@ defmodule BirdAppHardware.Led do
 
   alias Circuits.GPIO
 
-  @led_pin Application.get_env(:bird_app_hardware, :led_pin)
+  @led_pin Application.get_env(:bird_app_hardware, :led_pin, 18)
 
   def switch_power() do
     GPIO.write(output_gpio(), 1 - GPIO.read(output_gpio()))

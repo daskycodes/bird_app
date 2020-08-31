@@ -2,7 +2,7 @@ defmodule BirdAppHardware.Dht do
   use GenServer
   require Logger
 
-  @dht_pin Application.get_env(:bird_app_hardware, :dht_pin)
+  @dht_pin Application.get_env(:bird_app_hardware, :dht_pin, 4)
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
