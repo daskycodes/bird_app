@@ -1,6 +1,6 @@
 # Birdhouse
 
-![](https://git.coco.study/dkhaapam/bird_app/uploads/c9dd526fa8ce4613b5526ac1ad8a3f73/image.png)
+![Birdhouse dashboard in action](https://dev-to-uploads.s3.amazonaws.com/i/odorqq05xell588pnc0s.png)
 
 ## Hardware needed
 
